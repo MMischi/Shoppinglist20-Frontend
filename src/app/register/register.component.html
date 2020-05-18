@@ -1,0 +1,103 @@
+<div class="content">
+    <h1>Registrierung</h1>
+
+    <form [formGroup]="registerForm" (ngSubmit)="register()">
+        <input type="hidden" name="id">
+
+        <div class="section">
+            <div>
+                <label>Vorname: </label>
+                <input formControlName="firstName">
+                <div *ngIf="registerForm.get('firstName').invalid
+                    && (registerForm.get('firstName').dirty
+                    || registerForm.get('firstName').touched)
+                    && registerForm.get('firstName').hasError('required')"
+                     class="error">
+                    E-Mail ist verpflichtend
+                </div>
+            </div>
+
+            <div>
+                <label>Nachname: </label>
+                <input formControlName="lastName">
+                <div *ngIf="registerForm.get('lastName').invalid
+                    && (registerForm.get('lastName').dirty
+                    || registerForm.get('lastName').touched)
+                    && registerForm.get('lastName').hasError('required')"
+                     class="error">
+                    E-Mail ist verpflichtend
+                </div>
+            </div>
+
+            <div>
+                <label>E-Mail</label>
+                <input formControlName="email" type="email">
+                <div *ngIf="registerForm.get('email').invalid
+                    && (registerForm.get('email').dirty
+                    || registerForm.get('email').touched)
+                    && registerForm.get('email').hasError('required')"
+                     class="error">
+                    E-Mail ist verpflichtend
+                </div>
+            </div>
+
+            <div>
+                <label>Passwort: </label>
+                <input type="password" formControlName="password">
+                <div *ngIf="registerForm.get('password').invalid
+                    && (registerForm.get('password').dirty
+                    || registerForm.get('password').touched)
+                    && registerForm.get('password').hasError('required')"
+                     class="error">
+                    E-Mail ist verpflichtend
+                </div>
+            </div>
+        </div>
+
+        <div class="section">
+            <h3>Wähle aus:</h3>
+            <div>
+                <input type="radio" formControlName="flag" value="help-seeker">
+                <label>Ich brauche Hilfe</label>
+            </div>
+
+            <div>
+                <input type="radio" formControlName="flag" value="volunteer">
+                <label>Ich möchte helfen</label>
+            </div>
+        </div>
+
+        <div formArrayName="address_id" class="section">
+            <div class="fields" *ngFor="let control of address_id?.controls; index as i;" [formGroupName]="i">
+                <div>
+                    <h3>Adresse</h3>
+
+                    <label>Straße: </label>
+                    <input formControlName="street">
+                </div>
+
+                <div>
+                    <label>Hausnummer: </label>
+                    <input formControlName="house_number">
+                </div>
+
+                <div>
+                    <label>Postleitzahl: </label>
+                    <input formControlName="post_code">
+                </div>
+
+                <div>
+                    <label>Stadt: </label>
+                    <input formControlName="place">
+                </div>
+
+                <div>
+                    <label>Land: </label>
+                    <input formControlName="country">
+                </div>
+            </div>
+        </div>
+
+        <button type="submit" class="btn standard" [disabled]="registerForm.invalid">Registrieren</button>
+    </form>
+</div>

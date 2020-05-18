@@ -1,0 +1,64 @@
+<div class="content">
+    <h1 *ngIf="isUpdatingShoppinglist == true">Bearbeiten von: {{ shoppinglist?.title }}</h1>
+    <h1 *ngIf="isUpdatingShoppinglist == false">Neue Liste anlegen</h1>
+
+    <form [formGroup]="shoppinglistForm" (ngSubmit)="submitForm()">
+        <input type="hidden" name="id">
+
+        <div>
+            <label>Name der Liste: </label>
+            <input formControlName="title">
+            <div class="error" *ngIf="
+                shoppinglistForm.get('title').invalid
+                && (shoppinglistForm.get('title').dirty
+                || shoppinglistForm.get('title').touched)
+                && shoppinglistForm.get('title').hasError('required')">Ein Titel für die Liste ist verpflichtend!</div>
+        </div>
+
+        <div>
+            <label>Wann benötige ich den Einkauf: </label>
+            <input type="date" formControlName="due_date">
+            <div class="error" *ngIf="
+                shoppinglistForm.get('due_date').invalid
+                && (shoppinglistForm.get('due_date').dirty
+                || shoppinglistForm.get('due_date').touched)
+                && shoppinglistForm.get('due_date').hasError('required')">Ein zukünftiges Datum ist verpflichtend!</div>
+        </div>
+
+        <div>
+            <label>Das möchte ich haben: </label>
+            <div formArrayName="items">
+                <div class="fields" *ngFor="let control of items?.controls; index as i;" [formGroupName]="i">
+                    <input type="hidden" name="id">
+
+                    <div class="middle">
+                        <div>
+                            <label>Artikel: </label>
+                            <input formControlName="title" placeholder="Apfel">
+                        </div>
+                        <div>
+                            <label>Menge: </label>
+                            <input formControlName="amount" placeholder="2">
+                        </div>
+                    </div>
+
+                    <div class="middle">
+                        <div>
+                            <label>Beschreibung: </label>
+                            <input formControlName="extra_info" placeholder="Beschreibung (optional)">
+                        </div>
+                        <div>
+                            <label>Max. Preis: </label>
+                            <input formControlName="max_price" placeholder="3.00">
+                        </div>
+                    </div>
+                </div>
+
+                <button (click)="addItemControl()" type="button" class="btn plus">+</button>
+            </div>
+        </div>
+
+        <button type="submit" [disabled]="shoppinglistForm.invalid" class="btn standard">Speichern</button>
+
+    </form>
+</div>

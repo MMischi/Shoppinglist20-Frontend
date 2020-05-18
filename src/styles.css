@@ -1,1 +1,335 @@
-/* You can add global styles to this file, and also import other style files */
+@import url('https://fonts.googleapis.com/css?family=Source+Sans+Pro:200,600');
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    font-family: "Source Sans Pro";
+    font-size: 15px;
+}
+h1 {
+    margin: 5px 0;
+    font-weight: 600;
+
+    color: rgb(255, 160, 69);
+}
+h2 {
+    margin: 5px 0;
+    font-weight: 600;
+
+    color: rgb(255, 160, 69);
+}
+
+#wrapper {
+    display: flex;
+    flex-direction: inherit;
+}
+
+.btn {
+    display: block;
+    font-size: 13px;
+    border: none;
+    padding: 10px 20px;
+    margin-right: 10px;
+
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.btn.standard {
+    background: rgb(255, 160, 69);
+    color: #fff;
+
+    margin-top: 30px;
+}
+.btn.standard:hover {
+    color: rgb(255, 160, 69);
+    border: rgb(255, 160, 69) 1px solid;
+    background: #fff;
+    font-weight: 600;
+}
+
+.btn.back {
+    color: rgb(255, 160, 69);
+    border: rgb(255, 160, 69) 1px solid;
+}
+.btn.back:hover {
+    color: #fff;
+    font-weight: 600;
+    background: rgb(255, 160, 69);
+}
+
+.btn.remove {
+    color: rgb(255, 255, 255);
+    background: rgb(212, 0, 2);
+}
+.btn.remove:hover {
+    border: rgb(212, 0, 2) 1px solid;
+    background: #fff;
+    color: rgb(212, 0, 2);
+}
+
+.btn.edit {
+    color: rgb(255, 255, 255);
+    background: rgb(255, 160, 69);
+}
+.btn.edit:hover {
+    border: rgb(255, 160, 69) 1px solid;
+    background: #fff;
+    color: rgb(255, 160, 69);
+}
+
+/* nav -------------------------------------------------------------------------------------------------------------- */
+
+#nav {
+    display: flex;
+    flex-direction: column;
+
+    background: rgba(0, 0, 0, 0.1);
+
+    top: 0;
+    height: 100vh;
+    position: sticky;
+    width: calc(30% - 10px);
+
+    padding: 30px;
+}
+#nav div {
+    display: flex;
+    flex-direction: column;
+
+    border-radius: 5px;
+
+    background: rgb(255, 255, 255);
+}
+#nav a {
+    color: #444;
+    text-decoration: none;
+
+    padding: 15px 10px;
+
+    border-bottom: #444 0.5px solid;
+
+    font-weight: 200;
+}
+#nav a:hover {
+    background: #444;
+    border-radius: 5px;
+
+    color: #fff;
+    font-weight: 600;
+}
+#nav a:last-of-type {
+    border-bottom: none;
+}
+
+#nav a.active {
+    color: rgb(255, 160, 69);
+    font-weight: 600;
+}
+
+/* content ---------------------------------------------------------------------------------------------------------- */
+
+#wrapper>*:nth-child(3) {
+    width: calc(70% - 10px);
+    box-shadow: 0px 0px 52px -20px rgba(0,0,0,0.75);
+}
+.content {
+    display: flex;
+    flex-direction: column;
+
+    padding: 30px;
+
+    border-radius: 5px;
+}
+
+/* List ------------------------------------------------------------------------------------------------------------- */
+
+a.bs-shoppinglist-list-item {
+    text-decoration: none;
+
+    display: flex;
+    justify-content: space-between;
+
+    color: #444;
+
+    padding: 10px 0;
+
+    border-bottom: #444 0.5px solid;
+}
+a.bs-shoppinglist-list-item:hover {
+    color: rgb(255, 160, 69);
+}
+.listHeader {
+    font-weight: 600;
+}
+
+#choose_box {
+    margin: 10px 0;
+}
+#choose_box input {
+    margin-right: 5px;
+}
+
+/* detail ----------------------------------------------------------------------------------------------------------- */
+
+.listOfBtn {
+    display: flex;
+    margin: 20px 0;
+}
+
+.content table {
+    width: 100%;
+    margin: 20px 0;
+}
+.content table tr td {
+    padding: 5px 0px;
+}
+.content table tr th {
+    text-align: left;
+}
+
+.content .info {
+    padding: 10px 10px 20px 10px;
+    margin: 20px 0;
+    border-radius: 5px;
+    border: 1px solid rgb(255, 160, 69);
+}
+
+.bold {
+    font-weight: 600;
+}
+.bold.open {
+    color: rgb(38, 174, 31);
+}
+.bold.closed {
+    color: rgb(255, 60, 63);
+}
+
+.emptyInfo {
+    text-align: center;
+    margin: 50px;
+    font-weight: 600;
+}
+
+#comment_box textarea {
+    width: 100%;
+    padding: 5px;
+    font-size: 13px;
+
+    border: 1px solid #444;
+    border-radius: 5px;
+
+    margin-top: 10px;
+}
+#comment_box .btn {
+    margin-top: 10px;
+    margin-bottom: 30px;
+}
+#comment_box .comment {
+    padding: 5px 10px;
+}
+#comment_box .comment:nth-of-type(odd) {
+    background: rgba(255, 160, 69, 0.4);
+    border-radius: 5px;
+}
+
+#closeList_box label {
+    display: block;
+    margin-bottom: 10px;
+}
+#closeList_box input {
+    padding: 5px;
+    font-size: 13px;
+
+    margin-right: 5px;
+
+    border: 1px solid #444;
+    border-radius: 5px;
+
+    text-align: right;
+}
+#closeList_box .btn {
+    margin-top: 10px;
+}
+
+/* forms ------------------------------------------------------------------------------------------------------------ */
+
+form {
+    margin-top: 10px;
+}
+
+form>div,
+.section div {
+    margin-top: 10px;
+
+    display: flex;
+    flex-direction: column;
+}
+
+.section:nth-of-type(2) div input {
+    width: unset;
+}
+.section:nth-of-type(2) div label {
+    margin: auto 5px;
+}
+.section:nth-of-type(2) div {
+    display: flex;
+    flex-direction: row;
+}
+.section:nth-of-type(2) {
+    margin-top: 35px;
+}
+
+form div input,
+form div select {
+    font-size: 13px;
+
+    padding: 5px 10px;
+    margin: 2px 0;
+
+    border-radius: 5px;
+    border: 0.5px solid #444;
+
+    width: 200px;
+}
+form div input::placeholder {
+    color: rgba(0,0,0,0.4);
+    font-weight: lighter;
+}
+
+form div label {
+    margin: 5px 0;
+}
+
+form .fields {
+    padding: 10px 0;
+}
+form .fields:nth-of-type(even) {
+    background: rgba(255, 160, 69, 0.4);
+    border-radius: 5px;
+}
+
+form .middle {
+    display: flex;
+    justify-content: space-around;
+}
+
+form .middle div {
+    display: flex;
+    flex-direction: column;
+}
+
+.btn.plus {
+    background: #dedede;
+    margin-top: 10px;
+    font-weight: 600;
+    font-size: 20px;
+}
+
+.error {
+    font-weight: 600;
+    color: rgb(212, 0, 2);
+}

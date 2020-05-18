@@ -1,0 +1,41 @@
+<div class="content">
+    <h1>Hallo {{ user?.firstName }}!</h1>
+
+    <div>
+        <div id="choose_box">
+            <div>
+                <input type="radio" name="status" value="open" (click)="setFilter('open')" checked>
+                <label>Offene Listen</label>
+            </div>
+
+            <div>
+                <input type="radio" name="status" value="in Arbeit" (click)="setFilter('in Arbeit')">
+                <label>Listen in Arbeit</label>
+            </div>
+
+            <div>
+                <input type="radio" name="status" value="closed" (click)="setFilter('closed')">
+                <label>Abgeschlossene Listen</label>
+            </div>
+        </div>
+
+        <div *ngFor="let shoppinglist of shoppinglists">
+            <a
+            *ngIf="filter == shoppinglist.status"
+            class="bs-shoppinglist-list-item"
+            [shoppinglist]="shoppinglist"
+            [routerLink]="shoppinglist.id">
+            </a>
+        </div>
+
+        <p *ngIf="shoppinglists && !shoppinglists.length">
+            Zur Zeit gibt es hier keine Einkaufslisten.
+        </p>
+    </div>
+
+    <button *ngIf="user.flag == 'help-seeker'"
+            class="btn standard"
+            [routerLink]="['../addList']">Neue Liste</button>
+</div>
+
+<p *ngIf="!shoppinglists">Daten werden geladen</p>

@@ -1,0 +1,89 @@
+<div class="content" *ngIf="shoppinglist">
+    <h1>{{ shoppinglist?.title }}</h1>
+    <span>Bis: {{ shoppinglist?.due_date | date: 'longDate' }}</span>
+    <span>Status: <b class="bold {{ shoppinglist?.status }}">{{ shoppinglist?.status }}</b></span>
+    <br>
+    <span *ngIf="shoppinglist?.price"><b>Endpreis: </b>{{ shoppinglist?.price }}€</span>
+
+
+    <!-- Listen Items -->
+    <table *ngIf="shoppinglist?.list_items.length != 0">
+        <tr>
+            <th>Artikel</th>
+            <th>Menge</th>
+            <th>Beschreibung</th>
+            <th>max. Preis</th>
+        </tr>
+        <tr *ngFor="let item of shoppinglist?.list_items">
+            <td>{{ item.title }}</td>
+            <td>{{ item.amount }}</td>
+            <td>{{ item.extra_info }}</td>
+            <td>{{ item.max_price }} €</td>
+        </tr>
+    </table>
+
+    <div *ngIf="shoppinglist?.list_items.length == 0" class="emptyInfo">
+        Es wurden noch keine Artikel hinzugefügt.
+    </div>
+
+
+    <!-- Info Box -->
+    <div class="info">
+        <h2>Info-Box</h2>
+
+        <span *ngIf="shoppinglist?.volunteer_id != null">
+            Freiwilliger: <span>{{ volunteer?.firstName }} {{ volunteer?.lastName}}</span><br>
+        </span>
+        Hilfesuchender: <span>{{ creator?.firstName }} {{ creator?.lastName}}</span>
+        <br><br>
+        <b class="bold">Lieferadresse:</b><br>
+        {{ creator?.address.street }} {{ creator?.address.house_number }}<br>
+        {{ creator?.address.post_code }} {{ creator?.address.place }}<br>
+        {{ creator?.address.country }}
+    </div>
+
+
+    <!-- Kommentare -->
+    <div id="comment_box">
+        <h2>Kommentare</h2>
+        <div *ngFor="let comment of shoppinglist?.comments" class="comment">
+            {{ comment.comment }}
+        </div>
+
+        <!-- Kommentare einfügen -->
+        <div *ngIf="shoppinglist.status != 'closed'">
+            <textarea #input placeholder="Mein Kommentar ..." rows="3"></textarea>
+            <button type="submit" class="btn standard" (click)="comment(input.value)">Kommentieren</button>
+        </div>
+    </div>
+
+
+    <!-- Optionen -->
+    <div class="listOfBtn" *ngIf="user?.flag == 'help-seeker'">
+        <button class="btn edit"
+                *ngIf="shoppinglist?.status == 'open'"
+                [routerLink]="['../../updateList', shoppinglist?.id]">Liste bearbeiten</button>
+        <button class="btn remove"
+                *ngIf="shoppinglist?.status == 'open'"
+                (click)="removeShoppinglist()">Liste löschen</button>
+    </div>
+
+    <div class="listOfBtn" *ngIf="user?.flag == 'volunteer'">
+        <button class="btn standard"
+                *ngIf="shoppinglist?.status == 'open'"
+                [routerLink]="['../../shoppinglists', shoppinglist?.id]"
+                (click)="updateStatus()">Liste annehmen</button>
+
+
+        <div id="closeList_box" *ngIf="shoppinglist?.status == 'in Arbeit'">
+            <label>Hast du deinen Einkauf abgelossen? Gib hier die Summe ein, die du bezahlt hast: </label>
+            <input #price placeholder="zB 40.00">€
+
+            <button class="btn standard"
+                [routerLink]="['../../shoppinglists', shoppinglist?.id]"
+                (click)="closeList(price.value)">Einkauf abschließen</button>
+        </div>
+    </div>
+
+    <button class="btn back" [routerLink]="'/shoppinglists'">Zurück zur Übersicht</button>
+</div>
