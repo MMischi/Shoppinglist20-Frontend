@@ -144,7 +144,7 @@ export class ShoppinglistFormComponent implements OnInit {
                 || shoppinglist.list_items[i].max_price == "")) {
                 continue;
             } else {
-                if (shoppinglist.list_items[i].title == null) {
+                if (shoppinglist.list_items[i].title == null || shoppinglist.list_items[i].title == "") {
                     alert("Ein Artikel besitzt keinen Titel.");
                     return false;
                 }
